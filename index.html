@@ -1,13 +1,713 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Patrik Bey - Research</title>
-    <script type="module" crossorigin src="./assets/index-B1voBqoo.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CSP_1yx7.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrik Bey | Computational Neuroscience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #fafafa;
+            color: #1a1a1a;
+        }
+        
+        .text-muted {
+            color: #737373;
+        }
+        
+        .border-subtle {
+            border-color: #e5e5e5;
+        }
+        
+        .bg-surface {
+            background-color: #ffffff;
+        }
+        
+        .animate-fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .link-underline {
+            position: relative;
+        }
+        
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .link-underline:hover::after {
+            width: 100%;
+        }
+        
+        /* Grain texture overlay */
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Grain overlay -->
+    <div class="grain-overlay"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#fafafa]/90 backdrop-blur-md border-b border-subtle">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="text-sm font-medium tracking-tight">
+                    Patrik Bey
+                </a>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#research" class="text-sm text-muted hover:text-[#1a1a1a] transition-colors link-underline">Research</a>
+                    <a href="#publications" class="text-sm text-muted hover:text-[#1a1a1a] transition-colors link-underline">Publications</a>
+                    <a href="#about" class="text-sm text-muted hover:text-[#1a1a1a] transition-colors link-underline">About</a>
+                    <a href="#contact" class="text-sm text-muted hover:text-[#1a1a1a] transition-colors link-underline">Contact</a>
+                </div>
+                <button id="menu-btn" class="md:hidden p-2 -mr-2">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#fafafa] border-t border-subtle">
+            <div class="px-6 py-4 space-y-4">
+                <a href="#research" class="block text-muted hover:text-[#1a1a1a] transition-colors">Research</a>
+                <a href="#publications" class="block text-muted hover:text-[#1a1a1a] transition-colors">Publications</a>
+                <a href="#about" class="block text-muted hover:text-[#1a1a1a] transition-colors">About</a>
+                <a href="#contact" class="block text-muted hover:text-[#1a1a1a] transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-16">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8 py-20 lg:py-32">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Content -->
+                <div class="order-2 lg:order-1">
+                    <div class="animate-fade-up">
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-subtle text-xs text-muted mb-6">
+                            <i data-lucide="brain" class="w-3.5 h-3.5"></i>
+                            Senior Research Fellow at UCL
+                        </span>
+                    </div>
+                    
+                    <h1 class="animate-fade-up delay-100 text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.1] mb-6">
+                        Computational<br>
+                        <span class="font-medium">Neuroscience</span>
+                    </h1>
+                    
+                    <p class="animate-fade-up delay-200 text-lg text-muted font-light mb-4 max-w-md">
+                        AI in Neurology & Brain Network Modeling
+                    </p>
+                    
+                    <p class="animate-fade-up delay-300 text-muted mb-10 max-w-md leading-relaxed">
+                        Exploring the intersection of artificial intelligence, neuroimaging, and brain network modeling at UCL's Queen Square Institute of Neurology.
+                    </p>
+                    
+                    <div class="animate-fade-up delay-300 flex flex-wrap items-center gap-3 mb-10 text-sm text-muted">
+                        <span class="inline-flex items-center gap-1.5">
+                            <i data-lucide="network" class="w-3.5 h-3.5"></i>
+                            Brain Simulation
+                        </span>
+                        <span class="text-gray-300">·</span>
+                        <span class="inline-flex items-center gap-1.5">
+                            <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+                            Machine Learning
+                        </span>
+                        <span class="text-gray-300">·</span>
+                        <span>Stroke Research</span>
+                    </div>
+                    
+                    <div class="animate-fade-up delay-400 flex flex-wrap items-center gap-3">
+                        <a href="#research" class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a1a1a] text-white text-sm font-medium rounded-full hover:bg-[#333] transition-colors">
+                            Explore Research
+                            <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                        </a>
+                        <div class="flex items-center gap-2">
+                            <a href="https://scholar.google.com/citations?user=55CSb_AAAAAJ" target="_blank" rel="noopener noreferrer" class="w-10 h-10 inline-flex items-center justify-center border border-subtle rounded-full hover:border-[#1a1a1a] hover:bg-white transition-colors" aria-label="Google Scholar">
+                                <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                            </a>
+                            <a href="https://www.researchgate.net/profile/Patrik-Bey" target="_blank" rel="noopener noreferrer" class="w-10 h-10 inline-flex items-center justify-center border border-subtle rounded-full hover:border-[#1a1a1a] hover:bg-white transition-colors" aria-label="ResearchGate" style="font-family: 'Times New Roman', Times, serif;">
+                                <span class="text-sm">R<sup class="text-[10px]">G</sup></span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/patrik-bey-a43b6985" target="_blank" rel="noopener noreferrer" class="w-10 h-10 inline-flex items-center justify-center border border-subtle rounded-full hover:border-[#1a1a1a] hover:bg-white transition-colors" aria-label="LinkedIn">
+                                <i data-lucide="linkedin" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="animate-fade-up delay-500 mt-16 pt-8 border-t border-subtle grid grid-cols-3 gap-8">
+                        <div>
+                            <div class="text-2xl lg:text-3xl font-light text-[#1a1a1a]">11+</div>
+                            <div class="text-xs text-muted mt-1">Publications</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl lg:text-3xl font-light text-[#1a1a1a]">50+</div>
+                            <div class="text-xs text-muted mt-1">Citations</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl lg:text-3xl font-light text-[#1a1a1a]">4</div>
+                            <div class="text-xs text-muted mt-1">Research Areas</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Portrait -->
+                <div class="order-1 lg:order-2 flex justify-center lg:justify-end">
+                    <div class="animate-fade-up delay-200 relative">
+                        <img src="portrait.png" alt="Patrik Bey" class="w-64 h-64 lg:w-80 lg:h-80 object-cover rounded-2xl grayscale">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Areas Section -->
+    <section id="research" class="py-24 lg:py-32 bg-white">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="mb-16 lg:mb-20">
+                <span class="text-xs font-medium text-muted uppercase tracking-widest mb-4 block">Research Focus</span>
+                <h2 class="text-3xl lg:text-4xl font-light tracking-tight">
+                    Areas of <span class="font-medium">Investigation</span>
+                </h2>
+            </div>
+            
+            <!-- Research Cards -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- AI in Neurology -->
+                <div class="research-card group p-8 rounded-2xl bg-[#fafafa] border border-subtle hover-lift">
+                    <div class="w-12 h-12 rounded-xl bg-white border border-subtle flex items-center justify-center mb-6">
+                        <i data-lucide="cpu" class="w-5 h-5 text-[#1a1a1a]"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3">AI in Neurology</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-6">
+                        Applying machine learning and deep learning to neuroimaging data for improved diagnosis and prognosis in dementia, stroke, and other neurological conditions.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Dementia classification
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Stroke recovery prediction
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Deep graph learning
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Clinical decision support
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Stroke Research -->
+                <div class="research-card group p-8 rounded-2xl bg-[#fafafa] border border-subtle hover-lift">
+                    <div class="w-12 h-12 rounded-xl bg-white border border-subtle flex items-center justify-center mb-6">
+                        <i data-lucide="activity" class="w-5 h-5 text-[#1a1a1a]"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3">Stroke Research</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-6">
+                        Developing lesion-aware automated processing frameworks for clinical stroke MRI. Investigating group-derived and individual disconnection patterns for recovery prediction.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Lesion-aware processing
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Disconnection analysis
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Recovery prediction
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Clinical stroke MRI
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Neuroimaging Analysis -->
+                <div class="research-card group p-8 rounded-2xl bg-[#fafafa] border border-subtle hover-lift">
+                    <div class="w-12 h-12 rounded-xl bg-white border border-subtle flex items-center justify-center mb-6">
+                        <i data-lucide="scan" class="w-5 h-5 text-[#1a1a1a]"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3">Neuroimaging Analysis</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-6">
+                        Advanced processing and analysis of multi-modal neuroimaging data including fMRI, structural MRI, and PET imaging for clinical and research applications.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            fMRI signal processing
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Structural MRI analysis
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            PET imaging integration
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Multi-modal fusion
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Translational Neuroscience -->
+                <div class="research-card group p-8 rounded-2xl bg-[#fafafa] border border-subtle hover-lift">
+                    <div class="w-12 h-12 rounded-xl bg-white border border-subtle flex items-center justify-center mb-6">
+                        <i data-lucide="brain" class="w-5 h-5 text-[#1a1a1a]"></i>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3">Translational Neuroscience</h3>
+                    <p class="text-muted text-sm leading-relaxed mb-6">
+                        Bridging preclinical and clinical research through graph-based approaches. Our work on serotonin and social behavior in mice demonstrates how network models derived from animal studies can inform human neuroscience.
+                    </p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Graph models in animal studies
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Serotonin-behavior networks
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Cross-species validation frameworks
+                        </li>
+                        <li class="flex items-center gap-2 text-sm text-muted">
+                            <span class="w-1 h-1 rounded-full bg-[#1a1a1a]"></span>
+                            Preclinical to clinical translation
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="py-24 lg:py-32">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16">
+                <div>
+                    <span class="text-xs font-medium text-muted uppercase tracking-widest mb-4 block">Publications</span>
+                    <h2 class="text-3xl lg:text-4xl font-light tracking-tight">
+                        Selected <span class="font-medium">Works</span>
+                    </h2>
+                </div>
+                <p class="mt-4 lg:mt-0 text-muted text-sm max-w-md">
+                    Cited 50+ times across 11 peer-reviewed publications in leading neuroscience journals.
+                </p>
+            </div>
+            
+            <!-- Publications List -->
+            <div class="space-y-4">
+                <!-- Publication 1 -->
+                <div class="publication-item group p-6 rounded-2xl bg-white border border-subtle hover:border-[#1a1a1a]/20 transition-all">
+                    <div class="flex flex-col lg:flex-row lg:items-start gap-4 lg:gap-6">
+                        <div class="flex-shrink-0">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fafafa] text-xs font-medium text-muted">
+                                <i data-lucide="book-open" class="w-3 h-3"></i>
+                                2022
+                            </span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-base lg:text-lg font-medium text-[#1a1a1a] mb-2 group-hover:text-muted transition-colors">
+                                Brain simulation augments machine-learning-based classification of dementia
+                            </h3>
+                            <p class="text-sm text-muted mb-2">Triebkorn P, Stefanovski L, Dhindsa K, Diaz-Cortes MA, Bey P, Bülau K, et al.</p>
+                            <p class="text-xs text-muted/70 mb-3">
+                                Alzheimer's & Dementia: Translational Research & Clinical Interventions · 30 citations
+                            </p>
+                            <p class="text-sm text-muted line-clamp-2">
+                                Computational brain network modeling using The Virtual Brain (TVB) acts synergistically with machine learning and multi-modal neuroimaging to reveal mechanisms and improve diagnostics in Alzheimer's disease.
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <a href="https://doi.org/10.1002/trc2.12303" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1a1a1a] text-white text-xs font-medium hover:bg-[#333] transition-colors">
+                                View
+                                <i data-lucide="external-link" class="w-3 h-3"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 2 -->
+                <div class="publication-item group p-6 rounded-2xl bg-white border border-subtle hover:border-[#1a1a1a]/20 transition-all">
+                    <div class="flex flex-col lg:flex-row lg:items-start gap-4 lg:gap-6">
+                        <div class="flex-shrink-0">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fafafa] text-xs font-medium text-muted">
+                                <i data-lucide="book-open" class="w-3 h-3"></i>
+                                2024
+                            </span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-base lg:text-lg font-medium text-[#1a1a1a] mb-2 group-hover:text-muted transition-colors">
+                                A lesion-aware automated processing framework for clinical stroke MRI
+                            </h3>
+                            <p class="text-sm text-muted mb-2">Bey P, Dhindsa K, Kashyap A, Schirner M, Feldheim J, Bönstrup M, et al.</p>
+                            <p class="text-xs text-muted/70 mb-3">
+                                Human Brain Mapping · 7 citations
+                            </p>
+                            <p class="text-sm text-muted line-clamp-2">
+                                Development of an automated processing pipeline for pathologically altered brains, enabling personalized brain network modeling for stroke patient populations.
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <a href="https://doi.org/10.1002/hbm.26701" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1a1a1a] text-white text-xs font-medium hover:bg-[#333] transition-colors">
+                                View
+                                <i data-lucide="external-link" class="w-3 h-3"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 3 -->
+                <div class="publication-item group p-6 rounded-2xl bg-white border border-subtle hover:border-[#1a1a1a]/20 transition-all">
+                    <div class="flex flex-col lg:flex-row lg:items-start gap-4 lg:gap-6">
+                        <div class="flex-shrink-0">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fafafa] text-xs font-medium text-muted">
+                                <i data-lucide="book-open" class="w-3 h-3"></i>
+                                2025
+                            </span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-base lg:text-lg font-medium text-[#1a1a1a] mb-2 group-hover:text-muted transition-colors">
+                                Using an ODE model to separate rest and task signals in fMRI
+                            </h3>
+                            <p class="text-sm text-muted mb-2">Kashyap A, Geenjaar E, Bey P, Dhindsa K, Glomb K, Plis S, Keilholz S, Ritter P.</p>
+                            <p class="text-xs text-muted/70 mb-3">
+                                Nature Communications · 2 citations
+                            </p>
+                            <p class="text-sm text-muted line-clamp-2">
+                                Novel ODE model approach to disentangle resting-state and task-evoked signals in functional MRI, providing clearer insights into brain activity patterns.
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <a href="https://doi.org/10.1038/s41467-025-62491-6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1a1a1a] text-white text-xs font-medium hover:bg-[#333] transition-colors">
+                                View
+                                <i data-lucide="external-link" class="w-3 h-3"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Publication 4 -->
+                <div class="publication-item group p-6 rounded-2xl bg-white border border-subtle hover:border-[#1a1a1a]/20 transition-all">
+                    <div class="flex flex-col lg:flex-row lg:items-start gap-4 lg:gap-6">
+                        <div class="flex-shrink-0">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#fafafa] text-xs font-medium text-muted">
+                                <i data-lucide="book-open" class="w-3 h-3"></i>
+                                2024
+                            </span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-base lg:text-lg font-medium text-[#1a1a1a] mb-2 group-hover:text-muted transition-colors">
+                                Serotonin drives aggression and social behaviors in laboratory mice
+                            </h3>
+                            <p class="text-sm text-muted mb-2">Rivalan M, Alonso L, Mosienko V, Bey P, Hyde A, Bader M, et al.</p>
+                            <p class="text-xs text-muted/70 mb-3">
+                                Frontiers in Behavioral Neuroscience · 5 citations
+                            </p>
+                            <p class="text-sm text-muted line-clamp-2">
+                                Study on the role of serotonin in driving aggression and social behaviors in laboratory mice within semi-natural environments.
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <a href="https://doi.org/10.3389/fnbeh.2024.1450540" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1a1a1a] text-white text-xs font-medium hover:bg-[#333] transition-colors">
+                                View
+                                <i data-lucide="external-link" class="w-3 h-3"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- View All Link -->
+            <div class="mt-12 text-center">
+                <a href="https://scholar.google.com/citations?user=55CSb_AAAAAJ" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-muted hover:text-[#1a1a1a] transition-colors link-underline">
+                    View all publications on Google Scholar
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 lg:py-32 bg-white">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+                <!-- Portrait -->
+                <div class="lg:sticky lg:top-24">
+                    <img src="portrait.png" alt="Patrik Bey" class="w-full aspect-[3/4] object-cover rounded-2xl grayscale">
+                </div>
+                
+                <!-- Content -->
+                <div>
+                    <span class="text-xs font-medium text-muted uppercase tracking-widest mb-4 block">About</span>
+                    <h2 class="text-3xl lg:text-4xl font-light tracking-tight mb-8">
+                        Dr. Patrik <span class="font-medium">Bey</span>
+                    </h2>
+                    
+                    <div class="space-y-4 text-muted leading-relaxed mb-10">
+                        <p>
+                            As a Senior Research Fellow at UCL's Queen Square Institute of Neurology, I specialize in the application and analysis of complex AI models to high-dimensional clinical neuroimaging data.
+                        </p>
+                        <p>
+                            My research focuses on understanding the network organization of the human brain and its response to pathological events such as stroke. I'm particularly interested in bridging the gap between computational neuroscience and clinical applications, developing tools that can directly impact patient care.
+                        </p>
+                        <p>
+                            Previously, I completed my PhD (Dr. rer. medic.) at Charité Universitätsmedizin Berlin in 2025, with a dissertation on facilitating brain network modeling for pathological patient populations.
+                        </p>
+                    </div>
+                    
+                    <!-- Info Cards -->
+                    <div class="space-y-4 mb-10">
+                        <div class="flex gap-4">
+                            <div class="w-px bg-subtle relative">
+                                <div class="absolute top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#1a1a1a]"></div>
+                            </div>
+                            <div class="pb-6">
+                                <div class="text-sm font-medium text-[#1a1a1a]">PhD (Dr. rer. medic.)</div>
+                                <div class="text-sm text-muted">Charité Universitätsmedizin Berlin, 2025</div>
+                                <div class="text-xs text-muted/70 mt-1">
+                                    Dissertation: Facilitating brain network modelling for pathological patient populations
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-px bg-subtle relative">
+                                <div class="absolute top-1.5 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-[#1a1a1a]"></div>
+                            </div>
+                            <div>
+                                <div class="text-sm font-medium text-[#1a1a1a]">Senior Research Fellow</div>
+                                <div class="text-sm text-muted">UCL Queen Square Institute of Neurology</div>
+                                <div class="text-xs text-muted/70 mt-1">
+                                    Department of Translational Neuroscience and Stroke
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="p-6 rounded-2xl bg-[#fafafa] border border-subtle mb-8">
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 text-sm">
+                                <i data-lucide="map-pin" class="w-4 h-4 text-muted"></i>
+                                <span class="text-muted">London, United Kingdom</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <i data-lucide="building-2" class="w-4 h-4 text-muted"></i>
+                                <span class="text-muted">UCL Queen Square Institute of Neurology</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm">
+                                <i data-lucide="mail" class="w-4 h-4 text-muted"></i>
+                                <a href="mailto:patrik.bey@ucl.ac.uk" class="text-muted hover:text-[#1a1a1a] transition-colors">
+                                    patrik.bey@ucl.ac.uk
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Links -->
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://profiles.ucl.ac.uk/104267-patrik-bey" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-subtle text-sm text-muted hover:border-[#1a1a1a] hover:text-[#1a1a1a] transition-colors">
+                            UCL Profile
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=55CSb_AAAAAJ" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-subtle text-sm text-muted hover:border-[#1a1a1a] hover:text-[#1a1a1a] transition-colors">
+                            Google Scholar
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                        <a href="https://www.researchgate.net/profile/Patrik-Bey" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-subtle text-sm text-muted hover:border-[#1a1a1a] hover:text-[#1a1a1a] transition-colors">
+                            ResearchGate
+                            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 lg:py-32">
+        <div class="max-w-2xl mx-auto px-6 lg:px-8 text-center">
+            <span class="text-xs font-medium text-muted uppercase tracking-widest mb-4 block">Contact</span>
+            <h2 class="text-3xl lg:text-4xl font-light tracking-tight mb-4">
+                Get in <span class="font-medium">Touch</span>
+            </h2>
+            <p class="text-muted mb-10">
+                For collaborations, speaking engagements, or research inquiries
+            </p>
+            
+            <a href="mailto:patrik.bey@ucl.ac.uk" class="inline-flex items-center gap-3 px-8 py-4 bg-[#1a1a1a] text-white text-sm font-medium rounded-full hover:bg-[#333] transition-colors">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+                Send an Email
+            </a>
+            
+            <p class="mt-8 text-sm text-muted">
+                patrik.bey@ucl.ac.uk
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-white border-t border-subtle">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+                <div>
+                    <a href="#" class="text-lg font-medium tracking-tight">
+                        Patrik Bey
+                    </a>
+                    <p class="text-muted text-sm mt-1">Senior Research Fellow at UCL</p>
+                </div>
+                
+                <nav class="flex flex-wrap gap-6">
+                    <a href="#research" class="text-sm text-muted hover:text-[#1a1a1a] transition-colors">Research</a>
+                    <a href="#publications" class="text-sm text-muted hover:text-[#1a1a1a] transition-colors">Publications</a>
+                    <a href="#about" class="text-sm text-muted hover:text-[#1a1a1a] transition-colors">About</a>
+                    <a href="#contact" class="text-sm text-muted hover:text-[#1a1a1a] transition-colors">Contact</a>
+                </nav>
+                
+                <div class="flex items-center gap-3">
+                    <a href="https://scholar.google.com/citations?user=55CSb_AAAAAJ" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-[#fafafa] border border-subtle flex items-center justify-center text-muted hover:bg-[#1a1a1a] hover:text-white hover:border-[#1a1a1a] transition-colors">
+                        <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                    </a>
+                    <a href="mailto:patrik.bey@ucl.ac.uk" class="w-10 h-10 rounded-full bg-[#fafafa] border border-subtle flex items-center justify-center text-muted hover:bg-[#1a1a1a] hover:text-white hover:border-[#1a1a1a] transition-colors">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-12 pt-8 border-t border-subtle flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <p class="text-xs text-muted">
+                    &copy; 2025 Patrik Bey. All rights reserved.
+                </p>
+                <p class="text-xs text-muted">
+                    Queen Square Institute of Neurology, University College London
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe research cards and publication items
+        document.querySelectorAll('.research-card, .publication-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
 </html>

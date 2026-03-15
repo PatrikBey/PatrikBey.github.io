@@ -2,66 +2,99 @@
 
 A minimal, elegant personal website for Dr. Patrik Bey, Senior Research Fellow at UCL's Queen Square Institute of Neurology.
 
-## GitHub Pages Deployment Instructions
+## Design
 
-### Option 1: Deploy from Repository Root (Recommended)
+This website follows the **Pure Craft** aesthetic with:
+- Clean, bright background (#fafafa)
+- Minimal, elegant typography
+- Subtle borders and shadows
+- Smooth animations
+- Consistent Lucide icons throughout
+
+## GitHub Pages Deployment
+
+### Quick Setup (No Build Required)
 
 1. **Create a new GitHub repository**
    - Go to https://github.com/new
-   - Name it `patrik-bey` (or any name you prefer)
-   - Make it public
+   - Name it `patrik-bey` (or any name)
+   - Make it **Public**
 
 2. **Upload files**
-   - Copy all files from this folder to your repository root:
-     - `index.html`
-     - `portrait.jpg`
-     - `assets/` folder (with all JS/CSS files)
+   Upload these files to your repository root:
+   ```
+   ├── index.html      (main website file)
+   ├── portrait.png    (profile image)
+   └── README.md       (this file)
+   ```
 
 3. **Enable GitHub Pages**
-   - Go to repository **Settings** → **Pages**
+   - Go to **Settings** → **Pages**
    - Under "Source", select **Deploy from a branch**
    - Select **main** branch and **/(root)** folder
    - Click **Save**
 
-4. **Access your site**
-   - Your site will be available at: `https://yourusername.github.io/repository-name/`
-   - (If using username.github.io repo, it will be at root: `https://yourusername.github.io/`)
+4. **Your site is live!**
+   - URL: `https://yourusername.github.io/repository-name/`
 
-### Option 2: Deploy from /docs folder
+### Making Changes
 
-If you want to keep the source code in the same repository:
+Simply edit the `index.html` file and commit to GitHub. Changes will be live within minutes.
 
-1. Move all files to a `docs/` folder in your repository
-2. In Settings → Pages, select the **main** branch and **/docs** folder
+**To edit text:**
+- Open `index.html` in any text editor
+- Find the text you want to change
+- Save and commit to GitHub
 
-### File Structure
+**To change the portrait:**
+- Replace `portrait.png` with your new image
+- Keep the same filename or update the `src` attribute in HTML
 
+## Research Areas
+
+The website highlights four key research areas:
+
+1. **AI in Neurology** - Machine learning for dementia classification and stroke prediction
+2. **Stroke Research** - Lesion-aware MRI processing and recovery prediction
+3. **Neuroimaging Analysis** - Multi-modal fMRI, MRI, and PET data processing
+4. **Translational Neuroscience** - Graph-based approaches bridging animal and human studies
+
+## Technologies
+
+- **HTML5** - Semantic markup
+- **Tailwind CSS** - Utility-first styling (via CDN)
+- **Lucide Icons** - Consistent icon set (via CDN)
+- **Vanilla JavaScript** - Smooth scrolling and interactions
+
+## Features
+
+- Responsive design (mobile, tablet, desktop)
+- Smooth scroll animations
+- Hover effects on cards and buttons
+- Mobile navigation menu
+- Contact button with mailto link
+- External links to publications
+
+## Customization
+
+### Change Colors
+Edit the CSS in the `<style>` section of `index.html`:
+```css
+body {
+    background-color: #fafafa;  /* Background */
+    color: #1a1a1a;              /* Text */
+}
+.text-muted {
+    color: #737373;              /* Secondary text */
+}
 ```
-repository-root/
-├── index.html          # Main HTML file
-├── portrait.jpg        # Profile image
-├── assets/             # Static assets
-│   ├── index-*.js      # JavaScript bundle
-│   └── index-*.css     # CSS bundle
-└── README.md           # This file
-```
 
-### Custom Domain (Optional)
+### Add/Remove Publications
+Find the Publications section and copy/paste the publication item template.
 
-To use a custom domain:
-1. Add a `CNAME` file with your domain name
-2. Configure DNS settings with your provider
-3. Enable HTTPS in GitHub Pages settings
+### Update Contact Info
+Search for `patrik.bey@ucl.ac.uk` and replace with your email.
 
-## About
+## License
 
-This website showcases Dr. Patrik Bey's research in:
-- AI in Neurology
-- Stroke Research
-- Neuroimaging Analysis
-- Translational Neuroscience
-
-## Credits
-
-Built with React, TypeScript, Tailwind CSS, and Vite.
-Design inspired by the Pure Craft aesthetic - minimal, clean, and elegant.
+This website template is free to use for personal academic websites.
