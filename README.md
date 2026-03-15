@@ -1,73 +1,67 @@
-# React + TypeScript + Vite
+# Patrik Bey - Research Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal, elegant personal website for Dr. Patrik Bey, Senior Research Fellow at UCL's Queen Square Institute of Neurology.
 
-Currently, two official plugins are available:
+## GitHub Pages Deployment Instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Option 1: Deploy from Repository Root (Recommended)
 
-## React Compiler
+1. **Create a new GitHub repository**
+   - Go to https://github.com/new
+   - Name it `patrik-bey` (or any name you prefer)
+   - Make it public
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. **Upload files**
+   - Copy all files from this folder to your repository root:
+     - `index.html`
+     - `portrait.jpg`
+     - `assets/` folder (with all JS/CSS files)
 
-## Expanding the ESLint configuration
+3. **Enable GitHub Pages**
+   - Go to repository **Settings** → **Pages**
+   - Under "Source", select **Deploy from a branch**
+   - Select **main** branch and **/(root)** folder
+   - Click **Save**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+4. **Access your site**
+   - Your site will be available at: `https://yourusername.github.io/repository-name/`
+   - (If using username.github.io repo, it will be at root: `https://yourusername.github.io/`)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Option 2: Deploy from /docs folder
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+If you want to keep the source code in the same repository:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Move all files to a `docs/` folder in your repository
+2. In Settings → Pages, select the **main** branch and **/docs** folder
+
+### File Structure
+
+```
+repository-root/
+├── index.html          # Main HTML file
+├── portrait.jpg        # Profile image
+├── assets/             # Static assets
+│   ├── index-*.js      # JavaScript bundle
+│   └── index-*.css     # CSS bundle
+└── README.md           # This file
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Custom Domain (Optional)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+To use a custom domain:
+1. Add a `CNAME` file with your domain name
+2. Configure DNS settings with your provider
+3. Enable HTTPS in GitHub Pages settings
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## About
+
+This website showcases Dr. Patrik Bey's research in:
+- AI in Neurology
+- Stroke Research
+- Neuroimaging Analysis
+- Translational Neuroscience
+
+## Credits
+
+Built with React, TypeScript, Tailwind CSS, and Vite.
+Design inspired by the Pure Craft aesthetic - minimal, clean, and elegant.
